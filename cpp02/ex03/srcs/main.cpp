@@ -63,26 +63,6 @@ void	example6(void)
 	std::cout << bsp(a, b, c, point) << std::endl;
 }
 
-// Cas div /0
-void	example7(void)
-{
-	Point const	a(0, 0);
-	Point const	b(0, -1);
-	Point const	c(-1, 0);
-	Point const	point(-0.4f, -0.4f);
-	std::cout << bsp(a, b, c, point) << std::endl;
-}
-
-// Cas div /0
-void	example8(void)
-{
-	Point const	a(0, 0);
-	Point const	b(4, 0);
-	Point const	c(0, 3);
-	Point const	point(1, 1);
-	std::cout << bsp(a, b, c, point) << std::endl;
-}
-
 int	main(void)
 {
 
@@ -103,12 +83,6 @@ int	main(void)
 
 	std::cout << "example 6" << std::endl;
 	example6();
-
-	std::cout << "example 7" << std::endl;
-	example7();
-
-	std::cout << "example 8" << std::endl;
-	example8();
 
 	return (0);
 }
