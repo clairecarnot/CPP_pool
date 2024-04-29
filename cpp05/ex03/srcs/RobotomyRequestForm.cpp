@@ -34,7 +34,7 @@ std::string	RobotomyRequestForm::getTarget(void) const
 
 void	RobotomyRequestForm::doExecute(void) const
 {
-	srand(time(0));
+	std::srand(std::time(0));
 	std::cout << GREY << this->getName() << ": trrrrrtrrrrrtrrrrr.....bip...trrbipbip....trrtrrr" RESET << std::endl;
 	if (std::rand() % 2)
 		std::cout << GREY << this->getName() << ": SUCCESS ! " << this->_target << " has been robotomized." RESET << std::endl;
