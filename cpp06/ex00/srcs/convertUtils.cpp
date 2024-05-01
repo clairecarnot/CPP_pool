@@ -70,6 +70,7 @@ bool	isFloat(std::string const &input)
 	std::istringstream is(input);
 	float value;
 	is >> value;
+
 	if (is.fail())
 		return (false);
 	else
@@ -234,7 +235,7 @@ void	convertAsDouble(std::string const &input)
 		std::cout << "int : impossible" << std::endl;
 
 	//	float:
-	if (value >= static_cast<double>(std::numeric_limits<float>::min())
+	if (value >= -static_cast<double>(std::numeric_limits<float>::max())
 			&& value < static_cast<double>(std::numeric_limits<float>::max()))
 	{
 		if (value == static_cast<int>(value))
@@ -251,3 +252,13 @@ void	convertAsDouble(std::string const &input)
 	else
 		std::cout << "double : " << value << std::endl;
 }
+
+// Notes: FLOAT min
+// La dynamique c'est la fourchette de valeurs couverte par le codage là on va de 10+38 à 10-38
+// 3.4028235E+38
+// La résolution c'est le plus petit pas entre 2 valeurs consécutives: 6 (ou 7) décimales
+// 1.175494e-38
+// "Si une opération travaillant avec des flottants dépasse la capacité du type du résultat, alors, comme pour les entiers signés, le comportement est indéfini.
+// Toutefois, les flottants étant généralement représenté suivant la norme IEEE 754 (scientifique), le résultat sera souvent le suivant:
+//     En cas de dépassement de la borne maximale ou minimale, le résultat sera égal à l’infini (positif ou négatif).
+//     En cas de dépassement de la limite de la partie fractionnaire, le résultat sera arrondi à zéro."
