@@ -495,8 +495,10 @@ void	PmergeMe::_binaryInsertDeque(std::deque<int> *d, std::deque<int> *dsmall)
 					d->insert(d->begin() + mid, sVal);
 				}
 				i++;
+				jacobtmp--;
 			}
-			jacobtmp--;
+			else
+				jacobtmp = static_cast<int>(size) + 1;
 		}
 	}
 	if (++i < dsmall->size())
