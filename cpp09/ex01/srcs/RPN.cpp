@@ -33,8 +33,8 @@ void	RPN::solve(std::string const &input)
 {
 	std::string		value;
 	std::istringstream	iss(input);
-	int			n1;
-	int			n2;
+	long			n1;
+	long			n2;
 
 	while (iss >> value)
 	{

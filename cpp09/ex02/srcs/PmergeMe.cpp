@@ -50,7 +50,8 @@ void	PmergeMe::mergeInsertVector(std::vector<int> *v)
 	std::vector<int>	*vsmall = new(std::vector<int>);
 
 	_sortInsidePairsVector(v, vbig, vsmall);
-	_sortPairsVector(vbig, vsmall);
+//	_sortPairsVector(vbig, vsmall);
+	_mergeSortVector(vbig, vsmall);
 	v->assign(vbig->begin(), vbig->end());
 	v->insert(v->begin(), *vsmall->begin());
 
@@ -81,6 +82,7 @@ void	PmergeMe::_sortInsidePairsVector(std::vector<int> *v, std::vector<int> *vbi
 	}
 }
 
+/*
 void	PmergeMe::_sortPairsVector(std::vector<int> *vbig, std::vector<int> *vsmall)
 {
 	size_t	i = 0;
@@ -105,6 +107,84 @@ void	PmergeMe::_sortPairsVector(std::vector<int> *vbig, std::vector<int> *vsmall
 		}
 		i++;
 	}
+}
+*/
+
+void	PmergeMe::_mergeSortVector(std::vector<int> *vbig, std::vector<int> *vsmall)
+{
+	size_t len = vbig->size();
+	if (len <= 1)
+		return ;
+	size_t	mid = len / 2;
+	std::vector<int> *vbl = new std::vector<int>;
+	std::vector<int> *vbr = new std::vector<int>;
+	std::vector<int> *vsl = new std::vector<int>;
+	std::vector<int> *vsr = new std::vector<int>;
+
+	size_t i = 0;
+	for (; i < len; i++)
+	{
+		if (i < mid)
+		{
+			vbl->push_back((*vbig)[i]);
+			vsl->push_back((*vsmall)[i]);
+		}
+		else
+		{
+			vbr->push_back((*vbig)[i]);
+			vsr->push_back((*vsmall)[i]);
+		}
+	}
+	PmergeMe::_mergeSortVector(vbl, vsl);
+	PmergeMe::_mergeSortVector(vbr, vsr);
+	PmergeMe::_mergeVector(vbig, vbl, vbr, vsmall, vsl, vsr);
+
+	delete vbl;
+	delete vbr;
+	delete vsl;
+	delete vsr;
+}
+
+void	PmergeMe::_mergeVector(std::vector<int> *vbig, std::vector<int> *vbl, std::vector<int> *vbr, std::vector<int> *vsmall, std::vector<int> *vsl, std::vector<int> *vsr)
+{
+	size_t leftLen = vbig->size() / 2;
+	size_t rightLen = vbig->size() - leftLen;
+
+	size_t i(0);
+	size_t l(0);
+	size_t r(0);
+	while (l < leftLen && r < rightLen)
+	{
+		if ((*vbl)[l] < (*vbr)[r])
+		{
+			(*vbig)[i] = (*vbl)[l];
+			(*vsmall)[i] = (*vsl)[l];
+			i++;
+			l++;
+		}
+		else
+		{
+			(*vbig)[i] = (*vbr)[r];
+			(*vsmall)[i] = (*vsr)[r];
+			i++;
+			r++;
+		}
+	}
+	while (l < leftLen)
+	{
+		(*vbig)[i] = (*vbl)[l];
+		(*vsmall)[i] = (*vsl)[l];
+		i++;
+		l++;
+	}
+	while (r < rightLen)
+	{
+		(*vbig)[i] = (*vbr)[r];
+		(*vsmall)[i] = (*vsr)[r];
+		i++;
+		r++;
+	}
+
 }
 
 void	PmergeMe::_binaryInsertVector(std::vector<int> *v, std::vector<int> *vsmall)
@@ -160,8 +240,10 @@ void	PmergeMe::_binaryInsertVector(std::vector<int> *v, std::vector<int> *vsmall
 					v->insert(v->begin() + mid, sVal);
 				}
 				i++;
+				jacobtmp--;
 			}
-			jacobtmp--;
+			else
+				jacobtmp = static_cast<int>(size) + 1;
 		}
 	}
 	if (++i < vsmall->size())
@@ -223,7 +305,8 @@ void	PmergeMe::mergeInsertDeque(std::deque<int> *d)
 	std::deque<int>	*dsmall = new(std::deque<int>);
 
 	_sortInsidePairsDeque(d, dbig, dsmall);
-	_sortPairsDeque(dbig, dsmall);
+//	_sortPairsDeque(dbig, dsmall);
+	_mergeSortDeque(dbig, dsmall);
 	d->assign(dbig->begin(), dbig->end());
 	d->insert(d->begin(), *dsmall->begin());
 
@@ -254,6 +337,7 @@ void	PmergeMe::_sortInsidePairsDeque(std::deque<int> *d, std::deque<int> *dbig, 
 	}
 }
 
+/*
 void	PmergeMe::_sortPairsDeque(std::deque<int> *dbig, std::deque<int> *dsmall)
 {
 	size_t	i = 0;
@@ -278,6 +362,84 @@ void	PmergeMe::_sortPairsDeque(std::deque<int> *dbig, std::deque<int> *dsmall)
 		}
 		i++;
 	}
+}
+*/
+
+void	PmergeMe::_mergeSortDeque(std::deque<int> *dbig, std::deque<int> *dsmall)
+{
+	size_t len = dbig->size();
+	if (len <= 1)
+		return ;
+	size_t	mid = len / 2;
+	std::deque<int> *dbl = new std::deque<int>;
+	std::deque<int> *dbr = new std::deque<int>;
+	std::deque<int> *dsl = new std::deque<int>;
+	std::deque<int> *dsr = new std::deque<int>;
+
+	size_t i = 0;
+	for (; i < len; i++)
+	{
+		if (i < mid)
+		{
+			dbl->push_back((*dbig)[i]);
+			dsl->push_back((*dsmall)[i]);
+		}
+		else
+		{
+			dbr->push_back((*dbig)[i]);
+			dsr->push_back((*dsmall)[i]);
+		}
+	}
+	PmergeMe::_mergeSortDeque(dbl, dsl);
+	PmergeMe::_mergeSortDeque(dbr, dsr);
+	PmergeMe::_mergeDeque(dbig, dbl, dbr, dsmall, dsl, dsr);
+
+	delete dbl;
+	delete dbr;
+	delete dsl;
+	delete dsr;
+}
+
+void	PmergeMe::_mergeDeque(std::deque<int> *dbig, std::deque<int> *dbl, std::deque<int> *dbr, std::deque<int> *dsmall, std::deque<int> *dsl, std::deque<int> *dsr)
+{
+	size_t leftLen = dbig->size() / 2;
+	size_t rightLen = dbig->size() - leftLen;
+
+	size_t i(0);
+	size_t l(0);
+	size_t r(0);
+	while (l < leftLen && r < rightLen)
+	{
+		if ((*dbl)[l] < (*dbr)[r])
+		{
+			(*dbig)[i] = (*dbl)[l];
+			(*dsmall)[i] = (*dsl)[l];
+			i++;
+			l++;
+		}
+		else
+		{
+			(*dbig)[i] = (*dbr)[r];
+			(*dsmall)[i] = (*dsr)[r];
+			i++;
+			r++;
+		}
+	}
+	while (l < leftLen)
+	{
+		(*dbig)[i] = (*dbl)[l];
+		(*dsmall)[i] = (*dsl)[l];
+		i++;
+		l++;
+	}
+	while (r < rightLen)
+	{
+		(*dbig)[i] = (*dbr)[r];
+		(*dsmall)[i] = (*dsr)[r];
+		i++;
+		r++;
+	}
+
 }
 
 void	PmergeMe::_binaryInsertDeque(std::deque<int> *d, std::deque<int> *dsmall)

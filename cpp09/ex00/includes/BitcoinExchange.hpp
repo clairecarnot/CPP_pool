@@ -55,7 +55,7 @@ class	BitcoinExchange
 			public:
 				virtual const char*	what(void) const throw()
 				{
-					return ("Error : too large a number");
+					return ("Error : too large a number.");
 				}
 		};
 
