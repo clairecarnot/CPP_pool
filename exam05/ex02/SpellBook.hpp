@@ -2,26 +2,26 @@
 # define SPELLBOOK_HPP
 
 # include <iostream>
-# include <vector>
+# include <map>
 
-# include "Warlock.hpp"
+# include "ASpell.hpp"
 
-class SpellBook
+class	SpellBook
 {
 	public:
-		SpellBook(void);
+		SpellBook();
 		~SpellBook();
 
-		void	learnSpell(ASpell*);
-		void	forgetSpell(std::string const &);
-		ASpell*	createSpell(std::string const &);
+		void	learnSpell(ASpell *spell);
+		void	forgetSpell(std::string const &spellName);
+		ASpell*	createSpell(std::string const &spellName);
 
 	private:
 		SpellBook(SpellBook const &src);
 
 		SpellBook	&operator=(SpellBook const &src);
 
-		std::vector<ASpell*>	_sp;
+		std::map<std::string, ASpell *>	_arr;
 };
 
 #endif

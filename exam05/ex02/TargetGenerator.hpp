@@ -2,28 +2,25 @@
 # define TARGETGENERATOR_HPP
 
 # include <iostream>
-# include <vector>
+# include <map>
 
-# include "ATarget.hpp"
-# include "Dummy.hpp"
-# include "BrickWall.hpp"
+# include "Warlock.hpp"
 
 class	TargetGenerator
 {
 	public:
-		TargetGenerator(void);
-		~TargetGenerator(void);
-
-		void learnTargetType(ATarget* target);
-		void forgetTargetType(std::string const &target);
-		ATarget* createTarget(std::string const &type);
-
-	private:
+		TargetGenerator();
 		TargetGenerator(TargetGenerator const &src);
+		~TargetGenerator();
 
 		TargetGenerator	&operator=(TargetGenerator const &src);
 
-		std::vector<ATarget *>	_tg;
+		void		learnTargetType(ATarget* target);
+		void		forgetTargetType(std::string const &type);
+		ATarget*	createTarget(std::string const &type);
+
+	private:
+		std::map<std::string, ATarget *>	_gen;
 };
 
 #endif

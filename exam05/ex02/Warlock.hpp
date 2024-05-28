@@ -1,45 +1,44 @@
 #ifndef WARLOCK_HPP
 # define WARLOCK_HPP
 
+# include <iostream>
+# include <map>
+
 # include "ASpell.hpp"
 # include "ATarget.hpp"
-# include "Fwoosh.hpp"
 # include "Dummy.hpp"
+# include "Fwoosh.hpp"
 # include "SpellBook.hpp"
 # include "BrickWall.hpp"
-# include "Polymorph.hpp"
 # include "Fireball.hpp"
+# include "Polymorph.hpp"
 # include "TargetGenerator.hpp"
 
-# include <iostream>
-# include <vector>
-
-class SpellBook;
-
-class	Warlock
+class Warlock
 {
 	public:
 		Warlock(std::string const &name, std::string const &title);
-		~Warlock(void);
+		~Warlock();
 
-		std::string const	&getName(void) const;
-		std::string const	&getTitle(void) const;
+
+		std::string const	&getName() const;
+		std::string const	&getTitle() const;
 		void			setTitle(std::string const &title);
 
 		void			introduce() const;
 		void			learnSpell(ASpell *spell);
-		void			forgetSpell(std::string const &spell);
-		void			launchSpell(std::string const &spell, ATarget const &target);
+		void			forgetSpell(std::string spell);
+		void			launchSpell(std::string spell, ATarget const &target);
 
 	private:
-		Warlock(void);
+		Warlock();
 		Warlock(Warlock const &src);
 
 		Warlock	&operator=(Warlock const &src);
 
-		std::string		_name;
-		std::string		_title;
-		SpellBook		*_book;
+		std::string	_name;
+		std::string	_title;
+		SpellBook	_sB;
 };
 
-#endif
+# endif

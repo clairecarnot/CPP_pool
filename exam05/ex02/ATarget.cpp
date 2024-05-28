@@ -1,8 +1,8 @@
 #include "ATarget.hpp"
 
-// Constructors / Destructor ------------------------------------------------------ //
+// --------------------------------------------------------- //
 
-ATarget::ATarget(void)
+ATarget::ATarget()
 {
 }
 
@@ -15,11 +15,11 @@ ATarget::ATarget(ATarget const &src)
 	*this = src;
 }
 
-ATarget::~ATarget(void)
+ATarget::~ATarget()
 {
 }
 
-// Operators ---------------------------------------------------------------------- //
+// --------------------------------------------------------- //
 
 ATarget	&ATarget::operator=(ATarget const &src)
 {
@@ -30,16 +30,17 @@ ATarget	&ATarget::operator=(ATarget const &src)
 	return (*this);
 }
 
-// Getters / setters -------------------------------------------------------------- //
+// --------------------------------------------------------- //
 
-std::string const	&ATarget::getType(void) const
+std::string const	&ATarget::getType() const
 {
 	return (this->_type);
 }
 
-// Fonctions ---------------------------------------------------------------------- //
+// --------------------------------------------------------- //
 
 void	ATarget::getHitBySpell(ASpell const &spell) const
 {
-	std::cout << this->getType() << " has been " << spell.getEffects() << "!" << std::endl;
+	std::cout << this->_type << " has been " << spell.getEffects() << "!" << std::endl;
 }
+

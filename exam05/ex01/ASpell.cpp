@@ -1,6 +1,10 @@
 #include "ASpell.hpp"
 
-// Constructors / Destructor ------------------------------------------------------ //
+// ------------------------------------------------------- //
+
+ASpell::ASpell()
+{
+}
 
 ASpell::ASpell(std::string const &name, std::string const &effects) : _name(name), _effects(effects)
 {
@@ -11,11 +15,11 @@ ASpell::ASpell(ASpell const &src)
 	*this = src;
 }
 
-ASpell::~ASpell(void)
+ASpell::~ASpell()
 {
 }
 
-// Operators ---------------------------------------------------------------------- //
+// ------------------------------------------------------- //
 
 ASpell	&ASpell::operator=(ASpell const &src)
 {
@@ -27,19 +31,19 @@ ASpell	&ASpell::operator=(ASpell const &src)
 	return (*this);
 }
 
-// Getters / setters -------------------------------------------------------------- //
+// ------------------------------------------------------- //
 
-std::string const	&ASpell::getName(void) const
+std::string const	&ASpell::getName() const
 {
 	return (this->_name);
 }
 
-std::string const	&ASpell::getEffects(void) const
+std::string const	&ASpell::getEffects() const
 {
 	return (this->_effects);
 }
 
-// Fonctions ---------------------------------------------------------------------- //
+// ------------------------------------------------------- //
 
 void	ASpell::launch(ATarget const &target) const
 {

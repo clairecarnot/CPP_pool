@@ -1,18 +1,19 @@
 #ifndef FIREBALL_HPP
 # define FIREBALL_HPP
 
+# include <iostream>
 # include "ASpell.hpp"
 
 class	Fireball : public ASpell
 {
 	public:
-		Fireball(void);
+		Fireball();
 		Fireball(Fireball const &src);
-		virtual ~Fireball(void);
+		virtual ~Fireball();
 
 		Fireball	&operator=(Fireball const &src);
 
-		virtual ASpell	*clone(void) const;
+		virtual ASpell	*clone() const;
 
 	private:
 };

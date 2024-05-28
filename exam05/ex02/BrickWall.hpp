@@ -1,18 +1,19 @@
 #ifndef BRICKWALL_HPP
 # define BRICKWALL_HPP
 
+# include <iostream>
 # include "ATarget.hpp"
 
-class BrickWall : public ATarget
+class	BrickWall : public ATarget
 {
 	public:
-		BrickWall(void);
+		BrickWall();
 		BrickWall(BrickWall const &src);
-		virtual ~BrickWall(void);
+		virtual ~BrickWall();
 
 		BrickWall	&operator=(BrickWall const &src);
 
-		virtual ATarget	*clone(void) const;
+		virtual ATarget	*clone() const;
 
 	private:
 };

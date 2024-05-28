@@ -3,20 +3,21 @@
 
 # include <iostream>
 
-class	Warlock
+class Warlock
 {
 	public:
 		Warlock(std::string const &name, std::string const &title);
-		~Warlock(void);
+		~Warlock();
 
-		std::string const	&getName(void) const;
-		std::string const	&getTitle(void) const;
+
+		std::string const	&getName() const;
+		std::string const	&getTitle() const;
 		void			setTitle(std::string const &title);
 
 		void			introduce() const;
 
 	private:
-		Warlock(void);
+		Warlock();
 		Warlock(Warlock const &src);
 
 		Warlock	&operator=(Warlock const &src);
@@ -25,4 +26,4 @@ class	Warlock
 		std::string	_title;
 };
 
-#endif
+# endif

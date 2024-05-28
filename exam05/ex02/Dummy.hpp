@@ -1,18 +1,19 @@
 #ifndef DUMMY_HPP
 # define DUMMY_HPP
 
+# include <iostream>
 # include "ATarget.hpp"
 
-class Dummy : public ATarget
+class	Dummy : public ATarget
 {
 	public:
-		Dummy(void);
+		Dummy();
 		Dummy(Dummy const &src);
-		virtual ~Dummy(void);
+		virtual ~Dummy();
 
 		Dummy	&operator=(Dummy const &src);
 
-		virtual ATarget	*clone(void) const;
+		virtual ATarget	*clone() const;
 
 	private:
 };

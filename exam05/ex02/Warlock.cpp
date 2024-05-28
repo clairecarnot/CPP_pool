@@ -1,43 +1,47 @@
 #include "Warlock.hpp"
 
-// Constructors / Destructor ------------------------------------------------------ //
+// ------------------------------------------------------------------ //
+
+Warlock::Warlock()
+{
+}
 
 Warlock::Warlock(std::string const &name, std::string const &title) : _name(name), _title(title)
 {
 	std::cout << this->_name << ": This looks like another boring day." << std::endl;
-	this->_book = new SpellBook();
 }
 
-Warlock::Warlock(Warlock const &src) : _name(src._name), _title(src._title)
+Warlock::Warlock(Warlock const &src)
 {
+	*this = src;
 }
 
-Warlock::~Warlock(void)
+Warlock::~Warlock()
 {
 	std::cout << this->_name << ": My job here is done!" << std::endl;
-	delete (this->_book);
 }
 
-// Operators ---------------------------------------------------------------------- //
+// ------------------------------------------------------------------ //
 
 Warlock	&Warlock::operator=(Warlock const &src)
 {
 	if (this != &src)
 	{
-		this->_name = src._name;
-		this->_title = src._title;
+		this->_name = src.getName();
+		this->_title = src.getTitle();
 	}
 	return (*this);
 }
 
-// Getters / setters -------------------------------------------------------------- //
+// ------------------------------------------------------------------ //
 
-std::string const	&Warlock::getName(void) const
+
+std::string const	&Warlock::getName() const
 {
 	return (this->_name);
 }
 
-std::string const	&Warlock::getTitle(void) const
+std::string const	&Warlock::getTitle() const
 {
 	return (this->_title);
 }
@@ -47,26 +51,26 @@ void	Warlock::setTitle(std::string const &title)
 	this->_title = title;
 }
 
-// Fonctions ---------------------------------------------------------------------- //
+// ------------------------------------------------------------------ //
 
 void	Warlock::introduce() const
 {
-	std::cout << this->getName() << ": I am " << this->getName() << ", " << this->getTitle() << "!" << std::endl;
+	std::cout << this->_name << ": I am " << this->_name << ", " << this->_title << "!" << std::endl;
 }
 
 void	Warlock::learnSpell(ASpell *spell)
 {
-	this->_book->learnSpell(spell);
+	_sB.learnSpell(spell);
 }
 
-void	Warlock::forgetSpell(std::string const &spell)
+void	Warlock::forgetSpell(std::string spell)
 {
-	this->_book->forgetSpell(spell);
+	_sB.forgetSpell(spell);
 }
 
-void	Warlock::launchSpell(std::string const &spell, ATarget const &target)
+void	Warlock::launchSpell(std::string spell, ATarget const &target)
 {
-	ASpell	*created = this->_book->createSpell(spell);
-	if (created)
-		created->launch(target);
+	ASpell	*s = _sB.createSpell(spell);
+	if (s)
+		s->launch(target);
 }

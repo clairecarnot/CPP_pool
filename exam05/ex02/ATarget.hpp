@@ -2,30 +2,28 @@
 # define ATARGET_HPP
 
 # include <iostream>
-
 # include "ASpell.hpp"
 
-class	ASpell;
+class ASpell ;
 
 class	ATarget
 {
 	public:
-		ATarget(void);
+		ATarget();
 		ATarget(std::string const &type);
 		ATarget(ATarget const &src);
-		virtual ~ATarget(void);
+		virtual ~ATarget();
 
-		ATarget	&operator=(ATarget const &src);
+		ATarget &operator=(ATarget const &src);
 
-		std::string const	&getType(void) const;
+		std::string const	&getType() const;
 
-		virtual ATarget	*clone(void) const = 0;
-		void	getHitBySpell(ASpell const &spell) const;
+		virtual ATarget			*clone() const = 0;
+
+		void			getHitBySpell(ASpell const &spell) const;
 
 	protected:
 		std::string	_type;
-
-	private:
 };
 
-#endif
+# endif
